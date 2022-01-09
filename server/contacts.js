@@ -39,7 +39,7 @@ app
     });
 
 
-/* GET, PUT and DELETE individual books */
+/* GET, PUT and DELETE individual contacts */
 app
 
     .get('/contacts/:id', function (req, res) {
@@ -94,13 +94,14 @@ app
             contactToUpdate.birthday = req.body.birthday;
             contactToUpdate.telephones = req.body.telephones;
             contactToUpdate.addresses = req.body.addresses;
-           
+
             saveContactData(data);
             res.sendStatus(204);
 
         }
     });
 
+//function for getting the next available id when adding a new contact
 function getNextAvailableID(allContacts) {
 
     var maxID = 0;
@@ -121,11 +122,13 @@ function getNextAvailableID(allContacts) {
 
 }
 
+//function for getting the existing contacts from the contacts.json file
 function getContactData() {
     var data = fs.readFileSync(datafile, 'utf8');
     return JSON.parse(data);
 }
 
+//function for adding new contacts in the contacts.json file
 function saveContactData(data) {
     fs.writeFile(datafile, JSON.stringify(data), function (err) {
         if (err) {
