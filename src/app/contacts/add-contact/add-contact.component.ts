@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
+//Component used for adding and editing contacts
 @Component({
     templateUrl: './add-contact.component.html',
     styleUrls: ['./add-contact.component.css']

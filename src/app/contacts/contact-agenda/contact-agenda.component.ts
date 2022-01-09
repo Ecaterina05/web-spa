@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Contact } from '../contact.model';
 import { ContactService } from '../contact.service';
 
+//Component that displays the existing contacts
 @Component({
   selector: 'app-contact-agenda',
   templateUrl: './contact-agenda.component.html',
