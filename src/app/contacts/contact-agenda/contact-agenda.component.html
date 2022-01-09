@@ -1,0 +1,43 @@
+<div class="container-flex">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Sort by</mat-label>
+        <mat-select [(ngModel)]="selectedSortingMethod" required>
+            <mat-option value="none">None</mat-option>
+            <mat-option value="firstname">Firstname</mat-option>
+            <mat-option value="lastname">Lastname</mat-option>
+            <mat-option value="age">Age</mat-option>
+            <mat-option value="dateOfBirth">Date of birth</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <input type="text" placeholder="Ex. Mia" [(ngModel)]='listFilter'>
+
+    <mat-selection-list #contacts [multiple]="false">
+        <mat-list-option *ngFor="let contact of filteredContacts" [value]="contact">
+            {{contact.firstName }} {{ contact.lastName}}
+        </mat-list-option>
+    </mat-selection-list>
+
+</div>
+
+<div class="container" *ngIf="contacts.selectedOptions.selected[0]?.value">
+    <ul class="list-group">
+        <li class="list-group-item">Firstname: {{contacts.selectedOptions.selected[0]?.value.firstName}}</li>
+        <li class="list-group-item">Lastname: {{contacts.selectedOptions.selected[0]?.value.lastName}}</li>
+        <li class="list-group-item">Birthday: {{contacts.selectedOptions.selected[0]?.value.birthday}}</li>
+        <li class="list-group-item"> Phone Numbers:
+            <ul class="list-group" *ngFor="let number of contacts.selectedOptions.selected[0]?.value.telephones">
+                <li class="list-group-item">{{number.type}}: {{number.number}}</li>
+            </ul>
+        </li>
+        <li class="list-group-item"> Addresses:
+            <ul class="list-group" *ngFor="let address of contacts.selectedOptions.selected[0]?.value.addresses">
+                <li class="list-group-item">{{address.type}}: Street: {{address.street}}, City: {{address.city}},
+                    Country: {{address.country}}</li>
+            </ul>
+        </li>
+    </ul>
+    <button type="button" class="btn btn-info" [routerLink]="['/contacts', contacts.selectedOptions.selected[0]?.value.contactId, 'add']">Edit</button>
+    
+</div>

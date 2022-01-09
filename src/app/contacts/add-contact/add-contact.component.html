@@ -1,0 +1,86 @@
+<div class="container-sm">
+    <form [formGroup]="form" (ngSubmit)="submit(form.value)" autocomplete="off">
+
+        <div class="form-group">
+            <label for="firstName">Firstname</label>
+            <input formControlName="firstName" id="firstName" name="firstName" type="text"
+                class="form-control form-control-lg" placeholder="Firstname..." />
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="lastName">Lastname</label>
+            <input formControlName="lastName" id="lastName" name="lastName" type="text"
+                class="form-control form-control-lg" placeholder="Lastname..." />
+        </div>
+
+        <br>
+
+        <div class="form-group">
+            <label for="birthday">Birthday</label>
+            <input formControlName="birthday" id="birthday" name="birthday" type="date"
+                class="form-control form-control-lg" placeholder="Birthday..." />
+        </div>
+
+        <br>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Phone number</span>
+            </div>
+            <input type="text" id="number" name="number" class="form-control" placeholder="Number...">
+            <select class="form-select form-control" id="numberType" name="numberType">
+                <option selected hidden>Choose type...</option>
+                <option value="personal">Personal</option>
+                <option value="work">Work</option>
+                <option value="home">Home</option>
+            </select>
+            <button type="button" class="btn btn-outline-primary" (click)="addNumber()">Add</button>
+        </div>
+
+        <br>
+
+        <div class="input-group" *ngFor="let number of addedNumbers">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{number.type}}: {{number.number}}</span>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Address</span>
+            </div>
+            <input type="text" id="street" name="street" class="form-control" placeholder="Street...">
+            <input type="text" id="city" name="city" class="form-control" placeholder="City...">
+            <input type="text" id="country" name="country" class="form-control" placeholder="Country...">
+            <select class="form-select form-control" id="addressType" name="addressType">
+                <option selected hidden>Choose type...</option>
+                <option value="work">Work</option>
+                <option value="home">Home</option>
+            </select>
+            <button type="button" class="btn btn-outline-primary" (click)="addAddress()">Add</button>
+        </div>
+
+        <br>
+
+        <div class="input-group" *ngFor="let address of addedAddresses">
+            <div class="input-group-prepend">
+                <span class="input-group-text">{{address.type}}: {{address.street}}, {{address.city}},
+                    {{address.country}}
+                </span>
+            </div>
+        </div>
+
+        <br>
+        <div class="buttons">
+            <button type="submit" [disabled]="!(firstName.value || lastName.value)"
+                class="btn btn-success">Save</button>
+
+            <button type="button" class="btn btn-secondary" [routerLink]="['/contacts']">Cancel</button>
+            <button *ngIf="editingMode" type="button" class="btn btn-danger" (click)="deleteContact()">Delete</button>
+        </div>
+    </form>
+
+</div>

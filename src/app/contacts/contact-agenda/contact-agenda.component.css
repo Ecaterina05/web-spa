@@ -1,0 +1,16 @@
+.container-flex {
+    float: left;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    margin-top: 5%;
+    margin-left: 400px;
+    width: 40%;
+}
+
+.container button {
+    float: right;
+}
